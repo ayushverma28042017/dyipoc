@@ -10,7 +10,7 @@ from langchain.callbacks import get_openai_callback
 
 
 def main():
-    load_dotenv()
+    load_dotenv(".streamlit/secrets.toml")
     st.set_page_config(page_title="Enter details")
     st.header("Enter your details 💬")
     
