@@ -278,13 +278,13 @@ def non_v_customer_workflow(nric):
           #  st.write("you are NOT Citizend and Mendef")
  
 def read_sample_customer():
-     customer = pd.read_excel("resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
+     customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
      upload_xls_to_Db(customer,"customer")
     #  return customer
 
-def read_voluntry_scheme():
-     v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
-     upload_xls_to_Db(v_scheme,"v_scheme")
+# def read_voluntry_scheme():
+#      v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
+#      upload_xls_to_Db(v_scheme,"v_scheme")
     #  return v_scheme
 
 
