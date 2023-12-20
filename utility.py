@@ -278,7 +278,7 @@ def non_v_customer_workflow(nric):
           #  st.write("you are NOT Citizend and Mendef")
  
 def read_sample_customer():
-     customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
+     customer = pd.read_excel("Sample_Customer_Data.xlsx", sheet_name='TestSet')
      upload_xls_to_Db(customer,"customer")
     #  return customer
 
