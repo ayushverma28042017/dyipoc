@@ -28,42 +28,17 @@ def main():
           return 
         # elif a:
         #  validation()
-        else: 
-          #check if NRIC in Voluntary Scheme
-         ismendef = check_if_mendef(nric)
-         st.write("ismendefn!!",ismendef)
-          # st.write("Mendef" ,ismendef)
-          # check for PR and age
-        isCitizen=is_pr(nric[0])
-        st.write("isCitizen" ,isCitizen)
-        if(isCitizen):
-         st.write("you are Citizend and Mendef")
-         med_sal= find_value(int(nric[1:3]))
-        #  st.write("med_sal >>> " ,med_sal)
-         C1,C2= contraint_1(int(med_sal))
-        #  st.write("C1 .C2 >>>>" ,C1,C2)
-         G1 = find_minimum_of_2(int(C1), 1000000)
-         G2= find_minimum_of_3(int(G1), int(C2), 500000)
-        #  st.write("G1 >> " ,G1)
-        #  st.write("G2 >> " ,G2)
-        #  if(contraint_3(int(G1),int(G2),int(med_sal))):
-             
-        #      A1_data = open("A_1.txt","r")
-        #      st.write(A1_data.read())
-        #  else:
-            
-        #     A2_data = open("A_2.txt","r")
-        #     st.write(A2_data.read()) 
-           
-     
-    # else:
-    #   C_data = open("C.txt","r")
-    #   st.write(C_data.read())
-          #  st.write("you are NOT Citizend and Mendef")
+        elif is_v_scheme_customer(nric)==True:
+           v_customer_workflow(nric)
+        else :
+          v_customer_workflow(nric)
+          # non_v_customer_workflow(nric)
+         
+         
 def init():
    read_sample_customer()
-   read_voluntry_scheme()
-   readIncome()
+  #  read_voluntry_scheme()
+  #  readIncome()
 
           
 if __name__ == '__main__':
