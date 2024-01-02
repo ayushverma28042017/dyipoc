@@ -174,48 +174,48 @@ def v_customer_workflow(nric):
     #  ACCEPTED_SA_AMT = found_record[2]
     #  DOB = found_record[3]
     #  st.write("PRODUCT_CODE :",PRODUCT_CODE)
-     st.write("ANNUAL_PREMIUM :",PE1)
-     st.write("ACCEPTED_SA_AMT :",CE1)
-     st.write("ANNUAL_PREMIUM :",PE2)
-     st.write("ACCEPTED_SA_AMT :",CE2)
-     st.write("DOB :",DOB)
+   #   st.write("ANNUAL_PREMIUM :",PE1)
+   #   st.write("ACCEPTED_SA_AMT :",CE1)
+   #   st.write("ANNUAL_PREMIUM :",PE2)
+   #   st.write("ACCEPTED_SA_AMT :",CE2)
+   #   st.write("DOB :",DOB)
 
      year_of_birth  = DOB.split('-')[0]
 
-     st.write("year_of_birth :",year_of_birth)
+   #   st.write("year_of_birth :",year_of_birth)
 
      age = calculate_age(int(year_of_birth))
-     st.write("age  :",age)
+   #   st.write("age  :",age)
 
 
      median_sal= getMdianSalary_by_AgeRange(int(age))
-     st.write("getMdianSalary_by_AgeRange :",median_sal)
+   #   st.write("getMdianSalary_by_AgeRange :",median_sal)
 
     # Constraint 1 
-     cover_c1= 9 * median_sal 
-     cover_c2= 4 * median_sal 
-     st.write("cover_c1 :",cover_c1)
-     st.write("cover_c2 :",cover_c2)
+     c1= 9 * median_sal 
+     c2= 4 * median_sal 
+   #   st.write("cover_c1 :",c1)
+   #   st.write("cover_c2 :",c2)
 
      # Constraint 2
-     recommend_value_g1 =  min(cover_c1,1000000)
-     recommend_value_g2=  min(cover_c2,500000)
-     st.write("recommend_value_g1 :",recommend_value_g1)
-     st.write("recommend_value_g2 :",recommend_value_g2)
+     G1 =  min(c1,1000000)
+     G2=  min(c2,500000)
+   #   st.write("recommend_value_g1 :",G1)
+   #   st.write("recommend_value_g2 :",G2)
 
 
     #Deltas 
-     delta_1 = max(0,(recommend_value_g1-CE1))
-     delta_2 = max(0,(recommend_value_g2-CE2))
-     st.write("delta_1 :",delta_1)
-     st.write("delta_1 :",delta_2)
+     d1 = max(0,(G1-CE1))
+     d2 = max(0,(G2-CE2))
+   #   st.write("delta_1 :",d1)
+   #   st.write("delta_2 :",d2)
 
      
      #New SA to clsoe GAP
-     G1_A = CE1+delta_1
-     G2_A = CE2 +delta_2
-     st.write("G1_A :",G1_A)
-     st.write("G2_A :",G2_A)
+     G1A = CE1+d1
+     G2A = CE2 +d2
+   #   st.write("G1_A :",G1A)
+   #   st.write("G2_A :",G2A)
 
      #calculate permium pay base on above
      P1= premium_tlsaf(age) *12
@@ -223,7 +223,7 @@ def v_customer_workflow(nric):
      P3=(median_sal *15)/100
 
      if(P1+P2 <=P3):
-        st.write(msg_to_user(recommend_value_g1,CE1,recommend_value_g2,CE2))
+        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         # st.write("B1...B9.. write")
      else:
         st.write("B1...B9.. write")
@@ -244,47 +244,47 @@ def v_customer_workflow(nric):
 
     
     
-def non_v_customer_workflow(nric):
-    #check if NRIC in Voluntary Scheme
-        ismendef = is_v_scheme_customer(nric)
-        st.write("ismendefn!!",ismendef)
-          # st.write("Mendef" ,ismendef)
-          # check for PR and age
-        isCitizen=is_pr(nric[0])
-        st.write("isCitizen" ,isCitizen)
-        if(isCitizen):
-         st.write("you are Citizend and Mendef")
-         med_sal= find_value(int(nric[1:3]))
-        #  st.write("med_sal >>> " ,med_sal)
-         C1,C2= contraint_1(int(med_sal))
-        #  st.write("C1 .C2 >>>>" ,C1,C2)
-         G1 = find_minimum_of_2(int(C1), 1000000)
-         G2= find_minimum_of_3(int(G1), int(C2), 500000)
-        #  st.write("G1 >> " ,G1)
-        #  st.write("G2 >> " ,G2)
-        #  if(contraint_3(int(G1),int(G2),int(med_sal))):
+# def non_v_customer_workflow(nric):
+#     #check if NRIC in Voluntary Scheme
+#         ismendef = is_v_scheme_customer(nric)
+#         st.write("ismendefn!!",ismendef)
+#           # st.write("Mendef" ,ismendef)
+#           # check for PR and age
+#         isCitizen=is_pr(nric[0])
+#       #   st.write("isCitizen" ,isCitizen)
+#         if(isCitizen):
+#          st.write("you are Citizend and Mendef")
+#          med_sal= find_value(int(nric[1:3]))
+#         #  st.write("med_sal >>> " ,med_sal)
+#          C1,C2= contraint_1(int(med_sal))
+#         #  st.write("C1 .C2 >>>>" ,C1,C2)
+#          G1 = find_minimum_of_2(int(C1), 1000000)
+#          G2= find_minimum_of_3(int(G1), int(C2), 500000)
+#         #  st.write("G1 >> " ,G1)
+#         #  st.write("G2 >> " ,G2)
+#         #  if(contraint_3(int(G1),int(G2),int(med_sal))):
              
-        #      A1_data = open("A_1.txt","r")
-        #      st.write(A1_data.read())
-        #  else:
+#         #      A1_data = open("A_1.txt","r")
+#         #      st.write(A1_data.read())
+#         #  else:
             
-        #     A2_data = open("A_2.txt","r")
-        #     st.write(A2_data.read()) 
+#         #     A2_data = open("A_2.txt","r")
+#         #     st.write(A2_data.read()) 
            
      
-    # else:
-    #   C_data = open("C.txt","r")
-    #   st.write(C_data.read())
-          #  st.write("you are NOT Citizend and Mendef")
+#     # else:
+#     #   C_data = open("C.txt","r")
+#     #   st.write(C_data.read())
+#           #  st.write("you are NOT Citizend and Mendef")
  
 def read_sample_customer():
-     customer = pd.read_excel("Sample_Customer_Data.xlsx", sheet_name='TestSet')
+     customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
      upload_xls_to_Db(customer,"customer")
     #  return customer
 
-# def read_voluntry_scheme():
-#      v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
-#      upload_xls_to_Db(v_scheme,"v_scheme")
+def read_voluntry_scheme():
+     v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
+     upload_xls_to_Db(v_scheme,"v_scheme")
     #  return v_scheme
 
 
@@ -377,12 +377,6 @@ def last_char2(val):
 #         else:
 #             return True
             
-def validation(nric):
- if validate_nric(nric)== False:
-  st.write(" NRIC is not valid ")
-  return False
- else :
-     return True
 
 def find_value(age):  
     if age >= 15 and age <= 19:  
@@ -437,67 +431,65 @@ def find_value(age):
 #          return False
      
 
-def msg_to_user(G1,CE1,G2,CE2):
+def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
    if(G1 <CE1 and G2 < CE2):
-      return getCommonMSg_1()+B1()+getB1_B4()
+      #B1
+      return getCommonMSg_1(median_sal)+B1()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()
    elif(G1 <CE1 and G2 ==CE2):
-      return getCommonMSg_1()+B3()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B3
+      return getCommonMSg_1(median_sal)+B3()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
    elif(G1 <CE1 and G2 > CE2):
-      return getCommonMSg_1()+B7()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B7
+      return getCommonMSg_1(median_sal)+B7()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 ==CE1 and G2 <CE2):
-      return getCommonMSg_1()+B2()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
-   elif(G1 <CE1 and G2 ==CE2):
-      return getCommonMSg_1()+B4()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
-   elif(G1 <CE1 and G2 >CE2):
-      return getCommonMSg_1()+B8()+ getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B2
+      return getCommonMSg_1(median_sal)+B2()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
+   elif(G1 ==CE1 and G2 ==CE2):
+      #B4
+      return getCommonMSg_1(median_sal)+B4()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
+   elif(G1 ==CE1 and G2 >CE2):
+      #B8
+      return getCommonMSg_1(median_sal)+B8()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+ getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 >CE1 and G2 <CE2):
-      return getCommonMSg_1()+B5()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B5
+      return getCommonMSg_1(median_sal)+B5()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 >CE1 and G2 ==CE2):
-      return getCommonMSg_1()+B6()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B6
+      return getCommonMSg_1(median_sal)+B6()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 <CE1 and G2 >CE2):
-      return getCommonMSg_1()+B9()+getB1_B4()+getCommonMSg_2()+getCommonMSG_last()
+      #B9
+      return getCommonMSg_1(median_sal)+B9()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB9(G1,P1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    
 
      
-def getCommonMSg_1():
-    return """Thank you for being a member of the MINDEF-MHA voluntary group insurance scheme.​The median annual income of people in your age group is [pull from table median salary matching user’s age]​ At Singlife, we protect those who have served to protect Singapore."""
+def getCommonMSg_1(median_sal):
+    return f"""\n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
+    \n​The median annual income of people in your age group is {median_sal}​ .
+    \nAt Singlife, we protect those who have served to protect Singapore."""
  
 
-def getCommonMSg_2():
-    return """You are currently protected by the following MINDEF-MHA voluntary group insurance plans:​Death cover of VVV with annual premium of Critical illness cover of XXX with annual premium of """
+def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
+    return f"""\n\nYou are currently protected by the following MINDEF-MHA voluntary group insurance plans:​
+
+\nDeath cover of {ce1} with annual premium of {pe1} and monthly
+
+\nCritical illness cover of {ce2} with annual premium of {pe2}
+
+\nThis annual premium of {p1bp2b} is only {pe1pe2median}of the median annual income of people in your age group.​"""
  
 
 def getB1_B4():
-   return """Our Singlife Relationship Consultants will be contacting you to help you optimize your protection portfolio and chart you path towards financial freedom.​Share your discovery and commitment to start your financial freedom by clicking here this is where we have the hyperlink to post to social media."""
+   return """\n\nOur Singlife Relationship Consultants will be contacting you to help you optimize your protection portfolio and chart you path towards financial freedom.​
+   \nShare your discovery and commitment to start your financial freedom by clicking here this is where we have the hyperlink to post to social media."""
 
-def getB5_B6():
-   return """You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
+def getB5_B6(g1b,p1b,ce2,pe2,p1bpe2,p1bpe2median):
+   return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your death to VVV with annual premium of CCC
+Increase your death to {g1b} with annual premium of {p1b}
 
-Maintain your critical illness cover at XXX with annual premium of ZZZZ
+Maintain your critical illness cover at {ce2} with annual premium of {pe2}
 
-This annual premium of S$[P1b+PE2] is only KKKK of the median annual income of people in your age group.​
-
-Click on the following links to be protected today​
-
-MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
-
-MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
-
-Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
-
-Share your discovery and commitment to start your financial freedom by clicking here [this is where we have the hyperlink to post to social media]."""
-
-
-def getB7_B8():
-   return"""You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
-
-Maintain your death to PPPwith annual premium of JJJ
-
-Increase your critical illness cover at TTT with annual premium of OOO
-
-This annual premium of DDD is only RRRof the median annual income of people in your age group.​
+This annual premium of {p1bpe2} is only {p1bpe2median} % of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -507,16 +499,17 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here [this is where we have the hyperlink to post to social media]."""
+Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/.​"""
 
-def getB9():
-   return """You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your death to AAA with annual premium of YYY​
+def getB7_B8(ce1,pe1,g2b,p2b,pe1p2b,pe12bmedian):
+   return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your critical illness cover at CCC with annual premium of ZZZ
+Maintain your death to {ce1} with annual premium of {pe1}
 
-This annual premium of RRR is only KKKK of the median annual income of people in your age group.​
+Increase your critical illness cover at {g2b} with annual premium of {p2b}
+
+This annual premium of {pe1p2b} is only {pe12bmedian}  % of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -526,29 +519,48 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here [this is where we have the hyperlink to post to social media]."""
+Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
+
+def getB9(g1b,p1b,g2b,p2b,p1np2b,p1bp2bmedain):
+   return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
+
+Increase your death to {g1b} with annual premium of {p1b}
+
+Increase your critical illness cover at {g2b} with annual premium of {p2b}
+
+This annual premium of {p1np2b} is only {p1bp2bmedain} of the median annual income of people in your age group.​
+
+Click on the following links to be protected today​
+
+MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
+
+MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
+
+Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
+
+Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
 
 
 def getCommonMSG_last():
-   return """ LIA financial planning guide recommends to have​
+   return """\n\n LIA financial planning guide recommends to have​
                Death cover of at least 9x annual income.​ Critical illness of at least 4x annual income.​To spend no more than 15% of annual income on premium for insurance protection."""
 
 
 def B1():
-   return """You are currently well covered for death and critical illness."""
+   return """\n\n You are currently well covered for death and critical illness."""
 def B2():
-   return """ You currently have good protection for death and well covered for critical illness."""
+   return """ \n\n You currently have good protection for death and well covered for critical illness."""
 def B3():
-   return """You are currently well covered for death and have good cover for critical illness."""
+   return """\n\nYou are currently well covered for death and have good cover for critical illness."""
 def B4():
-   return """You currently have good cover for death critical illness.."""
+   return """\n\nYou currently have good cover for death critical illness.."""
 def B5():
-   return """ You are currently under protected for death and  and well covered for critical illness"""
+   return """ \n\nYou are currently under protected for death and  and well covered for critical illness"""
 def B6():
    return """ You are currently under covered for death and have good cover for critical illness."""
 def B7():
-   return """You are currently well covered for death and under covered for critical illness."""
+   return """\n\nYou are currently well covered for death and under covered for critical illness."""
 def B8():
-   return """. You currently have good cover for death and under covered for critical illness."""
+   return """\n\nYou currently have good cover for death and under covered for critical illness."""
 def B9():
-   return """You are currently under covered for death and critical illness."""
+   return """\n\nYou are currently under covered for death and critical illness."""
