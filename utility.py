@@ -91,7 +91,7 @@ def premium_tlsaf(age):
 
 
 def getMdianSalary_by_AgeRange(age):
-    if 0 <=age <=19 :  
+    if 15 <=age <=19 :  
         return 1198 
     elif 20 <=age <=24 :  
         return 2500 
@@ -152,12 +152,12 @@ def v_customer_workflow(nric):
 
      for record in found_records:
         if(record[0]=='TLSAF'):
-           PE1 = record[1]
-           CE1 = record[2]
+           PE1 = int(record[1])
+           CE1 = int(record[2])
            DOB = record[3]
         elif (record[0]=='LCSAF'):
-          PE2 = record[1]
-          CE2 = record[2]
+          PE2 = int(record[1])
+          CE2 = int(record[2])
         
        
     #  st.write("found_record >>>> :",found_records)
@@ -466,32 +466,30 @@ def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
      
 def getCommonMSg_1(median_sal):
     return f"""\n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
-    \n​The median annual income of people in your age group is {median_sal}​ .
+    \n​The median annual income of people in your age group is ${median_sal:,}​ .
     \nAt Singlife, we protect those who have served to protect Singapore."""
  
 
 def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
-    return f"""\n\nYou are currently protected by the following MINDEF-MHA voluntary group insurance plans:​
+    return f"""\n\nYou are protected by the following MINDEF-MHA voluntary group insurance plans:
+              \n1. Death cover of  ${int(ce1):,} with annual premium of ${pe1:,}
+              \n2. Critical illness cover of ${ce2:,} with annual premium of ${pe2:,}
 
-\nDeath cover of {ce1} with annual premium of {pe1} and monthly
-
-\nCritical illness cover of {ce2} with annual premium of {pe2}
-
-\nThis annual premium of {p1bp2b} is only {pe1pe2median}of the median annual income of people in your age group.​"""
+\nThis annual premium of ${p1bp2b:,}  is only ${pe1pe2median:.2%}of the median annual income of people in your age group.​"""
  
 
 def getB1_B4():
    return """\n\nOur Singlife Relationship Consultants will be contacting you to help you optimize your protection portfolio and chart you path towards financial freedom.​
-   \nShare your discovery and commitment to start your financial freedom by clicking here this is where we have the hyperlink to post to social media."""
+   \nShare your discovery and commitment to start your financial freedom by clicking here  here https://facebook.com/  \n https://instagram.com/."""
 
 def getB5_B6(g1b,p1b,ce2,pe2,p1bpe2,p1bpe2median):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your death to {g1b} with annual premium of {p1b}
+Increase your death to ${g1b:,} with annual premium of ${p1b:,}
 
-Maintain your critical illness cover at {ce2} with annual premium of {pe2}
+Maintain your critical illness cover at ${ce2:,} with annual premium of ${pe2:,}
 
-This annual premium of {p1bpe2} is only {p1bpe2median} % of the median annual income of people in your age group.​
+This annual premium of ${p1bpe2:,} is only ${p1bpe2median:.2%} of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -507,11 +505,11 @@ Share your discovery and commitment to start your financial freedom by clicking 
 def getB7_B8(ce1,pe1,g2b,p2b,pe1p2b,pe12bmedian):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Maintain your death to {ce1} with annual premium of {pe1}
+Maintain your death to ${ce1:,} with annual premium of ${pe1:,}
 
-Increase your critical illness cover at {g2b} with annual premium of {p2b}
+Increase your critical illness cover at ${g2b:,}with annual premium of ${p2b:,}
 
-This annual premium of {pe1p2b} is only {pe12bmedian}  % of the median annual income of people in your age group.​
+This annual premium of ${pe1p2b:,} is only ${pe12bmedian:.2%}  % of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -526,11 +524,11 @@ Share your discovery and commitment to start your financial freedom by clicking 
 def getB9(g1b,p1b,g2b,p2b,p1np2b,p1bp2bmedain):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your death to {g1b} with annual premium of {p1b}
+Increase your death to ${g1b:,} with annual premium of ${p1b:,}
 
-Increase your critical illness cover at {g2b} with annual premium of {p2b}
+Increase your critical illness cover at ${g2b:,} with annual premium of ${p2b:,}
 
-This annual premium of {p1np2b} is only {p1bp2bmedain} of the median annual income of people in your age group.​
+This annual premium of ${p1np2b:,} is only ${p1bp2bmedain:.2%} of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
