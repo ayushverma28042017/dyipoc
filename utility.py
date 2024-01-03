@@ -277,27 +277,27 @@ def v_customer_workflow(nric):
 #     #   st.write(C_data.read())
 #           #  st.write("you are NOT Citizend and Mendef")
  
-def read_sample_customer():
-     #local
-   #   customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
-     customer = pd.read_excel("Sample_Customer_Data.xlsx", sheet_name='TestSet'
-     upload_xls_to_Db(customer,"customer")
+# def read_sample_customer():
+#      #local
+#    # customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
+#      customer = pd.read_excel("Sample_Customer_Data.xlsx", sheet_name='TestSet')
+#      upload_xls_to_Db(customer,"customer")
     #  return customer
 
-def read_voluntry_scheme():
-     v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
-     upload_xls_to_Db(v_scheme,"v_scheme")
-    #  return v_scheme
+# def read_voluntry_scheme():
+#      v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
+#      upload_xls_to_Db(v_scheme,"v_scheme")
+#     #  return v_scheme
 
 
-def upload_xls_to_Db(wb,dbname):
-           cxn = sqlite3.connect(dbname+'.db')
-        #    wb = pd.read_excel("C:\\Users\\ayush\\OneDrive - Singapore Life\\Documents\\projects\\dyipoc\\dyi_test.xlsx", sheet_name='TestSet')
-           #append
+# def upload_xls_to_Db(wb,dbname):
+#            cxn = sqlite3.connect(dbname+'.db')
+#         #    wb = pd.read_excel("C:\\Users\\ayush\\OneDrive - Singapore Life\\Documents\\projects\\dyipoc\\dyi_test.xlsx", sheet_name='TestSet')
+#            #append
            
-           wb.to_sql(name=dbname,con=cxn,if_exists='replace',index=True)
-           cxn.commit()
-           cxn.close()   
+#            wb.to_sql(name=dbname,con=cxn,if_exists='replace',index=True)
+#            cxn.commit()
+#            cxn.close()   
 
 def is_v_scheme_customer(nric):
           con = sqlite3.connect("customer.db")

@@ -5,7 +5,7 @@ from utility import *
  
       
 def main():
-    init()
+    # init()
     load_dotenv(".streamlit/secrets.toml")
     st.set_page_config(page_title="Enter details")
     st.header("Enter your details 💬")
@@ -35,10 +35,10 @@ def main():
           # non_v_customer_workflow(nric)
          
          
-def init():
-   read_sample_customer()
-  #  read_voluntry_scheme()
-  #  readIncome()
+# def init():
+#   #  read_sample_customer()
+#   #  read_voluntry_scheme()
+#   #  readIncome()
 
           
 if __name__ == '__main__':
