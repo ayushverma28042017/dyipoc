@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 import streamlit as st
 import openpyxl as openpyxl
-from utility import *     
+from utility import *  
+from non_vcustomer import *    
  
       
 def main():
@@ -31,7 +32,7 @@ def main():
         elif is_v_scheme_customer(nric)==True:
            v_customer_workflow(nric)
         else :
-          v_customer_workflow(nric)
+          new_customer_workflow(nric)
           # non_v_customer_workflow(nric)
          
          
