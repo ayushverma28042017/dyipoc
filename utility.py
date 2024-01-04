@@ -481,7 +481,7 @@ def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
 
 def getB1_B4():
    return """\n\nOur Singlife Relationship Consultants will be contacting you to help you optimize your protection portfolio and chart you path towards financial freedom.​
-   \nShare your discovery and commitment to start your financial freedom by clicking here  here https://facebook.com/  \n https://instagram.com/."""
+   \nShare your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
 
 def getB5_B6(g1b,p1b,ce2,pe2,p1bpe2,p1bpe2median):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
