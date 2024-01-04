@@ -119,7 +119,7 @@ You could consider the following covers as your foundation protection as recomme
 
 Death cover of \${G1:,} with annual premium of \${P1:,}​
 
-Critical illness cover of ${G2:,} with annual premium of ${P2:,}
+Critical illness cover of \${G2:,} with annual premium of \${P2:,}
 
 This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
 
@@ -131,7 +131,7 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/..​
+Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/..​
 
 ​
 

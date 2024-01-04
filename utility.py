@@ -500,7 +500,7 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/.​"""
+Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/.​"""
 
 
 def getB7_B8(ce1,pe1,g2b,p2b,pe1p2b,pe12bmedian):
@@ -510,7 +510,7 @@ Maintain your death to \${ce1:,} with annual premium of \${pe1:,}
 
 Increase your critical illness cover at \${g2b:,}with annual premium of \${p2b:,}
 
-This annual premium of \${pe1p2b:,} is only \${pe12bmedian:.2%}  % of the median annual income of people in your age group.​
+This annual premium of \${pe1p2b:,} is only {pe12bmedian:.2%}  % of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -520,7 +520,7 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
+Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/."""
 
 def getB9(g1b,p1b,g2b,p2b,p1np2b,p1bp2bmedain):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
@@ -539,7 +539,7 @@ MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
 Our Singlife Relationship Consultants will be contacting you to help you close your protection gap and chart you path towards financial freedom.​
 
-Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
+Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/."""
 
 
 def getCommonMSG_last():
