@@ -490,7 +490,7 @@ Increase your death to \${g1b:,} with annual premium of \${p1b:,}
 
 Maintain your critical illness cover at ${ce2:,} with annual premium of ${pe2:,}
 
-This annual premium of \${p1bpe2:,} is only \${p1bpe2median:.2%} of the median annual income of people in your age group.​
+This annual premium of \${p1bpe2:,} is only {p1bpe2median:.2%} of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -510,7 +510,7 @@ Maintain your death to \${ce1:,} with annual premium of \${pe1:,}
 
 Increase your critical illness cover at \${g2b:,}with annual premium of \${p2b:,}
 
-This annual premium of \${pe1p2b:,} is only {pe12bmedian:.2%}  % of the median annual income of people in your age group.​
+This annual premium of \${pe1p2b:,} is only {pe12bmedian:.2%} of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -529,7 +529,7 @@ Increase your death to \${g1b:,} with annual premium of \${p1b:,}
 
 Increase your critical illness cover at \${g2b:,} with annual premium of \${p2b:,}
 
-This annual premium of \${p1np2b:,} is only \${p1bp2bmedain:.2%} of the median annual income of people in your age group.​
+This annual premium of \${p1np2b:,} is only {p1bp2bmedain:.2%} of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
