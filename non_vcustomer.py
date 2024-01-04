@@ -111,7 +111,7 @@ def new_customer_workflow(nric):
 
 
 def getA1Message(median_sal,G1,G2,P1,P2):
-   return f"""The median annual income of people in your age group is S$[pull from table median salary matching user’s age]​
+   return f"""The median annual income of people in your age group is \${median_sal}
 
 At Singlife, we protect those who have served to protect Singapore.​
 
