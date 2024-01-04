@@ -117,11 +117,11 @@ At Singlife, we protect those who have served to protect Singapore.​
 
 You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Death cover of ${G1:,} with annual premium of ${P1:,}​
+Death cover of \${G1:,} with annual premium of \${P1:,}​
 
 Critical illness cover of ${G2:,} with annual premium of ${P2:,}
 
-This annual premium of {(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
+This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
