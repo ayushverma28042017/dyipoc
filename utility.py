@@ -221,12 +221,13 @@ def v_customer_workflow(nric):
      P1= premium_tlsaf(age) *12
      P2= premium_lcsaf(age) *12
      P3=(median_sal *15)/100
+     median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
         st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         # st.write("B1...B9.. write")
      else:
-        st.write("B1...B9.. write")
+        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
 
 
     #  st.write("calculate_delta :",calculate_delta)
