@@ -32,11 +32,11 @@ def rewerite(prompt):
     "messages": [
         {
             "role": "system",
-            "content": "you are a Financial advisor assistant who suggest customer about their current policy"
+            "content": "you are a financial advisor"
         },
         {
             "role": "user",
-            "content": prompt
+            "content": "rewrite " +{prompt}
         }
     ]
 
