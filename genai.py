@@ -5,9 +5,8 @@ from dotenv import load_dotenv
 import os 
 
 load_dotenv(".streamlit/secrets.toml")
-url=os.environ["api_base_url"]
+url=os.environ["AZURE_OPENAI_ENDPOINT_CHAT"]
 api_key=os.environ["AZURE_OPENAI_API_KEY"]
-azureSearchKey=os.environ["azureSearchKey"]
  
 headers = {
 
@@ -23,7 +22,7 @@ def rewerite(prompt):
             "type": "AzureCognitiveSearch",
             "parameters": {
                 "endpoint": "https://cognitive-search-dyi.search.windows.net",
-                "key": azureSearchKey,
+                "key": api_key,
                 "indexName": "premium-index"
             }
                  }
