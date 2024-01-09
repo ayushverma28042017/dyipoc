@@ -118,15 +118,17 @@ def new_customer_workflow(nric,genaimsg):
         # st.write("B1...B9.. write")
       else:
          if genaimsg:
-          st.write(rewerite(getA1Message(median_sal,G1,G2,P1,P2)))
+        #   st.write(rewerite(getA1Message(median_sal,G1,G2,P1,P2)))
+             st.write(getA1Message(median_sal,G1,G2,P1,P2))
          else:
             st.write(getA1Message(median_sal,G1,G2,P1,P2))
     
     else:
       if genaimsg:
-        st.write(rewerite(getMessageC()))
+        # st.write(rewerite(getMessageC()))
+           st.write(getMessageC())
       else:
-        st.write(rewerite(getMessageC()))
+        st.write(getMessageC())
     
 
 def getA1Message(median_sal,G1,G2,P1,P2):
