@@ -3,6 +3,7 @@ import sqlite3
 import pandas as pd
 import openpyxl as openpyxl
 from datetime import date
+import re
 
 # def find_data(df,var):
 #    for col in list(df):
@@ -159,26 +160,6 @@ def v_customer_workflow(nric):
           PE2 = int(record[1])
           CE2 = int(record[2])
         
-       
-    #  st.write("found_record >>>> :",found_records)
-    
-     
-    #  if (found_record.fetchone() == None):
-    #   st.write("NO  found_record :",found_record)
-    #  else:
-    #   st.write("found_record :",found_record)
-
-    # found_record= "select PRODUCT_CODE,ANNUAL_PREMIUM,ACCEPTED_SA_AMT,DOB from customer where nric="+nric+";";
-    #  PRODUCT_CODE = found_record[0]
-    #  ANNUAL_PREMIUM = found_record[1]
-    #  ACCEPTED_SA_AMT = found_record[2]
-    #  DOB = found_record[3]
-    #  st.write("PRODUCT_CODE :",PRODUCT_CODE)
-   #   st.write("ANNUAL_PREMIUM :",PE1)
-   #   st.write("ACCEPTED_SA_AMT :",CE1)
-   #   st.write("ANNUAL_PREMIUM :",PE2)
-   #   st.write("ACCEPTED_SA_AMT :",CE2)
-   #   st.write("DOB :",DOB)
 
      year_of_birth  = DOB.split('-')[0]
 
@@ -224,59 +205,10 @@ def v_customer_workflow(nric):
      median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
-        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+        st.write(format_currency_in_string(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3)))
         # st.write("B1...B9.. write")
      else:
-        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
-
-
-    #  st.write("calculate_delta :",calculate_delta)
-    #  sa_sug = sa_suggestion(int(delta),int(ANNUAL_PREMIUM))
-    #  st.write("sa_suggestion :",sa_sug)
-    #  if(PRODUCT_CODE == "LCSAF" ):
-    #    premium =premium_lcsaf(int(age))
-    #  else:
-    #    premium =premium_tlsaf(int(age))
-    
-    #  st.write("premium :",premium)
-       
-
-
-
-    
-    
-# def non_v_customer_workflow(nric):
-#     #check if NRIC in Voluntary Scheme
-#         ismendef = is_v_scheme_customer(nric)
-#         st.write("ismendefn!!",ismendef)
-#           # st.write("Mendef" ,ismendef)
-#           # check for PR and age
-#         isCitizen=is_pr(nric[0])
-#       #   st.write("isCitizen" ,isCitizen)
-#         if(isCitizen):
-#          st.write("you are Citizend and Mendef")
-#          med_sal= find_value(int(nric[1:3]))
-#         #  st.write("med_sal >>> " ,med_sal)
-#          C1,C2= contraint_1(int(med_sal))
-#         #  st.write("C1 .C2 >>>>" ,C1,C2)
-#          G1 = find_minimum_of_2(int(C1), 1000000)
-#          G2= find_minimum_of_3(int(G1), int(C2), 500000)
-#         #  st.write("G1 >> " ,G1)
-#         #  st.write("G2 >> " ,G2)
-#         #  if(contraint_3(int(G1),int(G2),int(med_sal))):
-             
-#         #      A1_data = open("A_1.txt","r")
-#         #      st.write(A1_data.read())
-#         #  else:
-            
-#         #     A2_data = open("A_2.txt","r")
-#         #     st.write(A2_data.read()) 
-           
-     
-#     # else:
-#     #   C_data = open("C.txt","r")
-#     #   st.write(C_data.read())
-#           #  st.write("you are NOT Citizend and Mendef")
+        st.write(format_currency_in_string(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3)))
  
 # def read_sample_customer():
 #      #local
@@ -349,38 +281,6 @@ def last_char2(val):
     return switch.get(val)
 
 
-# def validate_nric(nric):
-#     # this is a simple script to valiate nric numbers
-
-#     # grab user input
-#     nric = input('Enter the nric to validate: ')
-
-#     x = (int(nric[1]) * 2) + (int(nric[2]) * 7) + (int(nric[3]) * 6) + (int(nric[4]) * 5) + (int(nric[5]) * 4) + (int(nric[6]) * 3) + (int(nric[7]) * 2)
-
-#     if nric[0] == 'T' or nric[0] == 'G':
-#         x = x + 4
-
-#     y = x % 11
-
-#     if nric[0] == 'S' or nric[0] == 'T':
-#         z = last_char1(y)
-
-#         if nric[8] == z:
-#             print('nric is valid!\n')
-#             quit()
-#         else:
-#             print('nric is invalid!\n')
-#             quit()
-#     elif nric[0] == 'F' or nric[0] == 'G':
-#         z = last_char2(y)
-
-#         if nric[8] == z:
-#             return True
-            
-#         else:
-#             return True
-            
-
 def find_value(age):  
     if age >= 15 and age <= 19:  
         return 1198  
@@ -405,33 +305,6 @@ def find_value(age):
     else:  
         return "Invalid age input"     
 
-# def contraint_1(salary):
-#     C1= 9 * salary
-#     C2 = 4 * salary
-#     return C1 ,C2
-
-# def find_minimum_of_3(a, b, c):  
-#     if a <= b and a <= c:  
-#         return a  
-#     elif b <= a and b <= c:  
-#         return b  
-#     else:  
-#         return c 
-    
-# def find_minimum_of_2(a, b):  
-#     if a <= b:  
-#         return a  
-#     else:  
-#         return b  
-# def contraint_3(P1,P2,P3):
-#      P3 = (15 *P3 )/100
-#     #  st.write("P3 is >> ",P3)
-#      if P1+P2 < P3 : 
-#         msg_to_user(G1,CE1,G2,CE2)
-#         return True
-#      else : 
-         
-#          return False
      
 
 def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
@@ -475,13 +348,13 @@ def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
     return f"""\n\nYou are protected by the following MINDEF-MHA voluntary group insurance plans:
               \n Death cover of  \${int(ce1):,} with annual premium of \${pe1:,}.
              \n Critical illness cover of \${ce2:,} with annual premium of \${pe2:,}.
-             \n This annual premium of \${p1bp2b:,}  is only \${pe1pe2median:.2%} of the 
+             \n This annual premium of \${p1bp2b:,}  is only {pe1pe2median:.2%} of the 
              median annual income of people in your age group.​"""
  
 
 def getB1_B4():
    return """\n\nOur Singlife Relationship Consultants will be contacting you to help you optimize your protection portfolio and chart you path towards financial freedom.​
-   Share your discovery and commitment to start your financial freedom by clicking here https://facebook.com/  \n https://instagram.com/."""
+   \nShare your discovery and commitment to start your financial freedom by clicking here : \nhttps://facebook.com/  \n https://instagram.com/."""
 
 def getB5_B6(g1b,p1b,ce2,pe2,p1bpe2,p1bpe2median):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
@@ -508,7 +381,7 @@ def getB7_B8(ce1,pe1,g2b,p2b,pe1p2b,pe12bmedian):
 
 Maintain your death cover to \${ce1:,} with annual premium of \${pe1:,}
 
-Increase your critical illness cover at \${g2b:,}with annual premium of \${p2b:,}
+Increase your critical illness cover at \${g2b:,} with annual premium of \${p2b:,}
 
 This annual premium of \${pe1p2b:,} is only {pe12bmedian:.2%} of the median annual income of people in your age group.​
 
@@ -545,7 +418,7 @@ Share your discovery and commitment to start your financial freedom by clicking 
 def getCommonMSG_last():
    return """\n\n LIA financial planning guide recommends to have​
                \n Death cover of at least 9x annual income.​ \nCritical illness of at least 4x annual income.\n​To spend no more than 15% of annual income on premium for insurance protection.
-               /n https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide"""
+               \n https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide"""
 
 
 def B1():
@@ -566,3 +439,24 @@ def B8():
    return """\n\nYou currently have good cover for death and under covered for critical illness."""
 def B9():
    return """\n\nYou are currently under covered for death and critical illness."""
+
+def format_currency_in_string(s):
+    # Find all occurrences of monetary values in the string
+    matches = re.findall(r'\$\d+', s)
+ 
+    for match in matches:
+        # Remove the dollar sign and convert to an integer
+        num = int(match[1:])
+ 
+        # Format the number with commas and two decimal places
+        formatted_num = f'${num:,.2f}'
+ 
+        # Replace the original number with the formatted number in the string
+        s = s.replace(match, formatted_num)
+ 
+    return s
+ 
+# Example usage
+input_string = "lorem ipsum $1200000"
+formatted_string = format_currency_in_string(input_string)
+# print(formatted_string)

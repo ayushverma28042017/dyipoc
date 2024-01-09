@@ -89,10 +89,10 @@ def new_customer_workflow(nric):
 #  st.write("current_year is :: ",current_year)
     age = current_year-(int(birthyr)+1900) 
     firstChar = nric[0:1]
-    # st.write("Age is :: ",age)
+    st.write("Age is :: ",age)
     # st.write("firstChar is :: ",firstChar)
 
-    if(firstChar == 'S' or firstChar == 'T' and (18 <age <40)):
+    if((firstChar == 'S' or firstChar == 'T') and (18 <age <40)):
     #   st.write(" is PR  :: ")
 
       median_sal=median_sal= getMdianSalary_by_AgeRange(int(age))

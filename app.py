@@ -8,13 +8,21 @@ from non_vcustomer import *
 def main():
     # init()
     load_dotenv(".streamlit/secrets.toml")
-    st.set_page_config(page_title="Enter details")
-    st.header("Enter your details 💬")
+    st.image("logo.JPG", width=100)
+    st.title("Discover you Insurance ..")
+#     st.set_page_config(
+#      page_title="Discover Your Insurance",
+#      page_icon="🧊",
+#      layout="centered",
+#      initial_sidebar_state="auto"
+# )
+    # st.set_page_config(page_title="Enter details")
+    # st.header("Enter your details 💬")
     
     with st.form(key = "Info"):
-          st.write("Inside the form")
+          # st.write("Inside the form")
           name=st.text_input(label = "Enter the your name")
-          nric=st.text_input(label = "Enter the nric ")
+          nric=st.text_input(label = "Enter the NRIC ")
           option = st.selectbox(
         "Gender?",
         ("Male", "Female"))
