@@ -21,10 +21,11 @@ def main():
     
     with st.form(key = "Info"):
           # st.write("Inside the form")
+          genaimsg = st.checkbox('Use genAI for message')
           name=st.text_input(label = "Enter the your name")
           nric=st.text_input(label = "Enter the NRIC ")
           option = st.selectbox(
-        "Gender?",
+        "Select Gender",
         ("Male", "Female"))
           phonNo=st.text_input(label = "Enter the phone No ")
           email=st.text_input(label = "Enter the email ")
@@ -40,7 +41,7 @@ def main():
         elif is_v_scheme_customer(nric)==True:
            v_customer_workflow(nric)
         else :
-          new_customer_workflow(nric)
+          new_customer_workflow(nric,genaimsg)
           # non_v_customer_workflow(nric)
          
          
