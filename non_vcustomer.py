@@ -83,67 +83,69 @@ def validation(name):
 
 def new_customer_workflow(nric):
      
-     birthyr  = nric[1:3]
-    #  st.write("birthyr is :: ",birthyr)
-     current_year = 2024
-    #  st.write("current_year is :: ",current_year)
-     age = current_year-(int(birthyr)+1900) 
-    #  st.write("Age is :: ",age)
+    birthyr  = nric[1:3]
+#  st.write("birthyr is :: ",birthyr)
+    current_year = 2024
+#  st.write("current_year is :: ",current_year)
+    age = current_year-(int(birthyr)+1900) 
+    firstChar = nric[0:1]
+    # st.write("Age is :: ",age)
+    # st.write("firstChar is :: ",firstChar)
 
-     median_sal=median_sal= getMdianSalary_by_AgeRange(int(age))
+    if(firstChar == 'S' or firstChar == 'T' and (18 <age <40)):
+    #   st.write(" is PR  :: ")
+
+      median_sal=median_sal= getMdianSalary_by_AgeRange(int(age))
 
     # Constraint 1 
-     c1= 9 * median_sal 
-     c2= 4 * median_sal 
+      c1= 9 * median_sal 
+      c2= 4 * median_sal 
      # Constraint 2
-     G1 =  min(c1,1000000)
-     G2=  min(c2,500000)
+      G1 =  min(c1,1000000)
+      G2=  min(c2,500000)
 
 
      #calculate permium pay base on above
-     P1= premium_tlsaf(age) *12
-     P2= premium_lcsaf(age) *12
-     P3=(median_sal *15)/100
-     median_sal = 12 * median_sal
+      P1= premium_tlsaf(age) *12
+      P2= premium_lcsaf(age) *12
+      P3=(median_sal *15)/100
+      median_sal = 12 * median_sal
 
-     if(P1+P2 <=P3):
+      if(P1+P2 <=P3):
         st.write(getA1Message(median_sal,G1,G2,P1,P2))
         # st.write("B1...B9.. write")
-     else:
+      else:
          st.write(getA1Message(median_sal,G1,G2,P1,P2))
-
+    else:
+      st.write(getMessageC())
 
 def getA1Message(median_sal,G1,G2,P1,P2):
-   return f"""The median annual income of people in your age group is \${median_sal}
+     return f"""The median annual income of people in your age group is \${median_sal}
 
-At Singlife, we protect those who have served to protect Singapore.​
+    At Singlife, we protect those who have served to protect Singapore.​
+    You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide:​
 
-You could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
+        a)Death cover of \${G1:,} with annual premium of \${P1:,}​
 
-Death cover of \${G1:,} with annual premium of \${P1:,}​
+        b)Critical illness cover of \${G2:,} with annual premium of \${P2:,}
 
-Critical illness cover of \${G2:,} with annual premium of \${P2:.}
+        c)This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
 
-This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
+    Click on the following links to be protected today​
 
-Click on the following links to be protected today​
+        MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
 
-MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
+        MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
-MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
+    Our Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom.​
+    Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/..​
 
-Our Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom.​
+    LIA financial planning guide recommends to have​
+    \n1.Death cover of at least 9x annual income.​
+    \n2.Critical illness of at least 4x annual income.​
+     \n3.To spend no more than 15% of annual income on premium for insurance protection.​
+      https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide ​"""
 
-Share your discovery and commitment to start your financial freedom by clicking here \n https://facebook.com/  \n https://instagram.com/..​
-
-​
-
-*LIA financial planning guide recommends to have​
-
-Death cover of at least 9x annual income.​
-
-Critical illness of at least 4x annual income.​
-
-To spend no more than 15% of annual income on premium for insurance protection.​
-
-https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide​"""
+def getMessageC():
+   return """ Our SRC can help you with a comprehensive financial review.​
+    \nOur Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom."""
