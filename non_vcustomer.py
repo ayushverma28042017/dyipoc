@@ -84,11 +84,11 @@ def validation(name):
 def new_customer_workflow(nric):
      
      birthyr  = nric[1:3]
-     st.write("birthyr is :: ",birthyr)
+    #  st.write("birthyr is :: ",birthyr)
      current_year = 2024
-     st.write("current_year is :: ",current_year)
+    #  st.write("current_year is :: ",current_year)
      age = current_year-(int(birthyr)+1900) 
-     st.write("Age is :: ",age)
+    #  st.write("Age is :: ",age)
 
      median_sal=median_sal= getMdianSalary_by_AgeRange(int(age))
 
