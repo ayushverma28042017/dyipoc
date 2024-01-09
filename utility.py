@@ -467,15 +467,15 @@ def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
      
 def getCommonMSg_1(median_sal):
     return f"""\n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
-    ​The median annual income of people in your age group is ${median_sal:,}​ .
+    \n​The median annual income of people in your age group is ${median_sal:,}​ .
     At Singlife, we protect those who have served to protect Singapore."""
  
 
 def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
     return f"""\n\nYou are protected by the following MINDEF-MHA voluntary group insurance plans:
-              Death cover of  \${int(ce1):,} with annual premium of \${pe1:,}
-              Critical illness cover of \${ce2:,} with annual premium of \${pe2:,}
-             This annual premium of \${p1bp2b:,}  is only \${pe1pe2median:.2%}of the 
+              \n Death cover of  \${int(ce1):,} with annual premium of \${pe1:,}.
+             \n Critical illness cover of \${ce2:,} with annual premium of \${pe2:,}.
+             \n This annual premium of \${p1bp2b:,}  is only \${pe1pe2median:.2%} of the 
              median annual income of people in your age group.​"""
  
 
@@ -506,7 +506,7 @@ Share your discovery and commitment to start your financial freedom by clicking 
 def getB7_B8(ce1,pe1,g2b,p2b,pe1p2b,pe12bmedian):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Maintain your death to \${ce1:,} with annual premium of \${pe1:,}
+Maintain your death cover to \${ce1:,} with annual premium of \${pe1:,}
 
 Increase your critical illness cover at \${g2b:,}with annual premium of \${p2b:,}
 
@@ -544,7 +544,8 @@ Share your discovery and commitment to start your financial freedom by clicking 
 
 def getCommonMSG_last():
    return """\n\n LIA financial planning guide recommends to have​
-               Death cover of at least 9x annual income.​ Critical illness of at least 4x annual income.​To spend no more than 15% of annual income on premium for insurance protection."""
+               \n Death cover of at least 9x annual income.​ \nCritical illness of at least 4x annual income.\n​To spend no more than 15% of annual income on premium for insurance protection.
+               /n https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide"""
 
 
 def B1():
