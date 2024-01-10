@@ -1,5 +1,5 @@
 from utility import *   
-from genai import *
+# from genai import *
 # from app import *
 
 def check(email):
@@ -119,9 +119,9 @@ def new_customer_workflow(nric,genaimsg):
       else:
          if genaimsg:
         #   st.write(rewerite(getA1Message(median_sal,G1,G2,P1,P2)))
-             st.write(getA1Message(median_sal,G1,G2,P1,P2))
+             st.write(format_currency_in_string(getA1Message(median_sal,G1,G2,P1,P2)))
          else:
-            st.write(getA1Message(median_sal,G1,G2,P1,P2))
+            st.write(format_currency_in_string(getA1Message(median_sal,G1,G2,P1,P2)))
     
     else:
       if genaimsg:
@@ -135,9 +135,9 @@ def getA1Message(median_sal,G1,G2,P1,P2):
      return f"""The median annual income of people in your age group is \${median_sal}
                 \nAt Singlife, we protect those who have served to protect Singapore.​
                 \nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide:​
-                   a)Death cover of \${G1:,} with annual premium of \${P1:,}​
-                   b)Critical illness cover of \${G2:,} with annual premium of \${P2:,}
-                   c)This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.2%}  of the median annual income of people in your age group.​
+                   a)Death cover of \${G1:,} with annual premium of \${P1:.}​
+                   b)Critical illness cover of \${G2:,} with annual premium of \${P2:.}
+                   c)This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.%}  of the median annual income of people in your age group.​
 
                Click on the following links to be protected today​
                 MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​

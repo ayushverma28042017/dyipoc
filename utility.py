@@ -205,10 +205,11 @@ def v_customer_workflow(nric):
      median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
-        st.write(format_currency_in_string(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3)))
-        # st.write("B1...B9.. write")
+        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+        st.write(clickmindefbot())
      else:
-        st.write(format_currency_in_string(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3)))
+        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+        st.write(clickmindefbot())
  
 # def read_sample_customer():
 #      #local
@@ -337,18 +338,21 @@ def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
       return getCommonMSg_1(median_sal)+B9()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB9(G1,P1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    
 
+def clickmindefbot():
+   link = '[Mindef Bot](https://genai-dashboard-features.streamlit.app/mindefbot)'
+   st.markdown(link, unsafe_allow_html=True)
      
 def getCommonMSg_1(median_sal):
     return f"""\n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
-    \n​The median annual income of people in your age group is ${median_sal:,}​ .
+    \n​The median annual income of people in your age group is """+ "${:,.2f}".format(median_sal)+""".
     At Singlife, we protect those who have served to protect Singapore."""
  
 
 def getCommonMSg_2(ce1,pe1,ce2,pe2,p1bp2b,pe1pe2median):
     return f"""\n\nYou are protected by the following MINDEF-MHA voluntary group insurance plans:
-              \n Death cover of  \${int(ce1):,} with annual premium of \${pe1:,}.
-             \n Critical illness cover of \${ce2:,} with annual premium of \${pe2:,}.
-             \n This annual premium of \${p1bp2b:,}  is only {pe1pe2median:.2%} of the 
+              \n Death cover of  """+ "\${:,.2f}".format(ce1) +f""" with annual premium of \${pe1:,}.
+             \n Critical illness cover of """+ "\${:,.2f}".format(ce2) +f""" with annual premium of \${pe2:,}.
+             \n This annual premium of """ + "\${:,.2f}".format(p1bp2b) + f"""  is only {pe1pe2median:.2%} of the 
              median annual income of people in your age group.​"""
  
 
@@ -359,11 +363,11 @@ def getB1_B4():
 def getB5_B6(g1b,p1b,ce2,pe2,p1bpe2,p1bpe2median):
    return f"""\n\nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide*:​
 
-Increase your death to \${g1b:,} with annual premium of \${p1b:,}
+Increase your death to \${g1b:,.2f} with annual premium of \${p1b::..2f}
 
-Maintain your critical illness cover at ${ce2:,} with annual premium of ${pe2:,}
+Maintain your critical illness cover at ${ce2:,.2f} with annual premium of ${pe2:..2f}
 
-This annual premium of \${p1bpe2:,} is only {p1bpe2median:.2%} of the median annual income of people in your age group.​
+This annual premium of """ + "\${:,.2f}".format(p1bpe2) + f""" is only """ + "${:,.2%}".format(p1bpe2median)  +""""  of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -383,7 +387,7 @@ Maintain your death cover to \${ce1:,} with annual premium of \${pe1:,}
 
 Increase your critical illness cover at \${g2b:,} with annual premium of \${p2b:,}
 
-This annual premium of \${pe1p2b:,} is only {pe12bmedian:.2%} of the median annual income of people in your age group.​
+This annual premium of """ + "${:,.2f}".format(pe1p2b) + f""" is only""" + "${:,.2%}".format(pe12bmedian)  +"""" of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -400,9 +404,9 @@ def getB9(g1b,p1b,g2b,p2b,p1np2b,p1bp2bmedain):
 
 Increase your death to \${g1b:,} with annual premium of \${p1b:,}
 
-Increase your critical illness cover at \${g2b:,} with annual premium of \${p2b:,}
+Increase your critical illness cover at \${g2b:,} with annual premium of \${p2b:.2}
 
-This annual premium of \${p1np2b:,} is only {p1bp2bmedain:.2%} of the median annual income of people in your age group.​
+This annual premium of """ + "${:,.2f}".format(p1np2b) + f"""  is only """ + "${:,.2%}".format(p1bp2bmedain)  +"""" of the median annual income of people in your age group.​
 
 Click on the following links to be protected today​
 
@@ -418,7 +422,7 @@ Share your discovery and commitment to start your financial freedom by clicking 
 def getCommonMSG_last():
    return """\n\n LIA financial planning guide recommends to have​
                \n Death cover of at least 9x annual income.​ \nCritical illness of at least 4x annual income.\n​To spend no more than 15% of annual income on premium for insurance protection.
-               \n https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide"""
+               \n https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide \n\n"""
 
 
 def B1():
