@@ -339,7 +339,7 @@ def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
    
 
 def clickmindefbot():
-   link = '[Mindef Bot](https://genai-dashboard-features.streamlit.app/mindefbot)'
+   link = '[Mindef-Bot](https://insurancediscovery.streamlit.app/midefbot)'
    st.markdown(link, unsafe_allow_html=True)
      
 def getCommonMSg_1(median_sal):
