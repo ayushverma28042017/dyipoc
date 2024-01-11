@@ -53,7 +53,7 @@ with st.form(key = 'userdata'):
             # st.text_area(resformat)
             st.text_area(label="Response :",value={resformat},
             height=300,
-            disabled=True)
+            disabled=False)
       else:
             st.write("Failed to fetch data") 
             st.write("Status code:", response.status_code)
