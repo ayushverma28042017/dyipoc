@@ -2,7 +2,8 @@ from dotenv import load_dotenv
 import streamlit as st
 import openpyxl as openpyxl
 from utility import *  
-from non_vcustomer import *    
+from non_vcustomer import *   
+import re  
  
       
 def main():
@@ -21,21 +22,25 @@ def main():
     
     with st.form(key = "Info"):
           # st.write("Inside the form")
-          genaimsg = st.checkbox('Use genAI for message')
-          name=st.text_input(label = "Enter the your name")
-          nric=st.text_input(label = "Enter the NRIC ")
+          st.header("Are you an existing MINDEF & MHA Group Insurance member?")
+          st.subheader("**Are you an existing").text("Enter your details to check if you are an existing insured member**")
+        #   genaimsg = st.checkbox('Use genAI for message')
+          name=st.text_input(label = "Please enter your **Name**")
+          nric=st.text_input(label = "Please enter a **NRIC** number ")
           option = st.selectbox(
         "Select Gender",
         ("Male", "Female"))
-          phonNo=st.text_input(label = "Enter the phone No ")
-          email=st.text_input(label = "Enter the email ")
+          phonNo=st.text_input(label = "Please enter **Phone No**")
+          email=st.text_input(label = "Please enter **Email** ")
     
-          submit = st.form_submit_button(label="submit", help="Click to submit!")
+          submit = st.form_submit_button(label="**Check now**", help="Click to submit!")
     
     if submit:
         if not(name and nric and option and phonNo and email) :
           st.write("Please enter the mandatory information!!")
           return 
+        if not(check(email)):
+         st.write("Please enter the valid  email ")
         # elif a:
         #  validation()
         elif is_v_scheme_customer(nric)==True:
@@ -49,7 +54,18 @@ def main():
 #   #  read_sample_customer()
 #   #  read_voluntry_scheme()
 #   #  readIncome()
-
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+def check(email):
+ 
+    # pass the regular expression
+    # and the string into the fullmatch() method
+    if(re.fullmatch(regex, email)):
+        # print("Valid Email")
+        return True
+ 
+    else:
+        # print("Invalid Email")
+        return False
           
 if __name__ == '__main__':
     main()
