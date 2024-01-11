@@ -10,7 +10,7 @@ def main():
     # init()
     load_dotenv(".streamlit/secrets.toml")
     st.image("logo.JPG", width=100)
-    st.title("Discover you Insurance ..")
+    st.title("Let's discover how you can achieve an affordable protection portfolio with Singlfe")
 #     st.set_page_config(
 #      page_title="Discover Your Insurance",
 #      page_icon="🧊",
@@ -22,8 +22,8 @@ def main():
     
     with st.form(key = "Info"):
           # st.write("Inside the form")
-          st.header("Are you an existing MINDEF & MHA Group Insurance member?")
-          st.subheader("**Are you an existing").text("Enter your details to check if you are an existing insured member**")
+        #   st.header("Are you an existing MINDEF & MHA Group Insurance member?")
+        #   st.header("Enter your details to check if you are an existing insured member")
         #   genaimsg = st.checkbox('Use genAI for message')
           name=st.text_input(label = "Please enter your **Name**")
           nric=st.text_input(label = "Please enter a **NRIC** number ")
