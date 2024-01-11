@@ -52,7 +52,7 @@ with st.form(key = 'userdata'):
             # st.write(response.json())
             resformat= str(response.json()["choices"][0]["message"]["content"])
             # st.text_area(resformat)
-            st.text_area(label="Response :",value={resformat},
+            st.text_area(label="Response :",value=resformat,
             height=300,
             disabled=False)
       else:
