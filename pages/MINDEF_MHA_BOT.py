@@ -50,7 +50,10 @@ with st.form(key = 'userdata'):
             # st.write("Success!!!!")   
             # st.write(response.json())
             resformat= str(response.json()["choices"][0]["message"]["content"])
-            st.write(resformat)
+            # st.text_area(resformat)
+            st.text_area(label="Response :",value={resformat},
+            height=300,
+            disabled=True)
       else:
             st.write("Failed to fetch data") 
             st.write("Status code:", response.status_code)
