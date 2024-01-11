@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os 
 
 load_dotenv(".streamlit/secrets.toml")
-st.image("Geine.JPG", width=100)
+st.image("Geine.jpg", width=100)
 url=os.environ["api_base_url"]
 api_key=os.environ["AZURE_OPENAI_API_KEY"]
 azureSearchKey=os.environ["azureSearchKey"]
