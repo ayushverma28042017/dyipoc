@@ -107,9 +107,9 @@ def generate_response(prompt):
     # response = requests.post(url, headers=headers, data=json.dumps(data))   
     if completion.status_code == 200: 
             response = str(completion.json()["choices"][0]["message"]["content"])
-            response=str(response.replace('[doc1]',''))
-            response=str(response.replace('[doc2]',''))
-            response=str(response.replace('[doc3]',''))
+            response=response.replace('[doc1]','')
+            response=response.replace('[doc2]','')
+            response=response.replace('[doc3]','')
             response= str(response)
 
             st.session_state['messages'].append({"role": "assistant", "content": response})
