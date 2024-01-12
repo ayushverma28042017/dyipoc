@@ -195,12 +195,12 @@ def v_customer_workflow(nric):
      median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
-        st.image('full_cover.png', width=200)
+        st.image('full_cover.png', width=400)
         st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         export_as_pdf = st.button("Share")
         st.write(clickmindefbot())
      else:
-        st.image('half_cover.png', width=200)
+        st.image('half_cover.png', width=400)
         st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         export_as_pdf = st.button("Share")
         st.write(clickmindefbot())

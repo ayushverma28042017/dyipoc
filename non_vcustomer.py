@@ -120,7 +120,7 @@ def new_customer_workflow(nric):
       else:
              st.write(getA1Message(median_sal,G1,G2,P1,P2))
     else:
-             st.image('no_cover.png', width=200)
+             st.image('no_cover.png', width=400)
              st.write(getMessageC())
              export_as_pdf = st.button("Share")
              if export_as_pdf:
