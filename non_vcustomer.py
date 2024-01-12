@@ -92,7 +92,7 @@ def new_customer_workflow(nric):
 
     age = current_year-(int(birthyr)+1900) 
     firstChar = nric[0:1]
-    st.write("Age is :: ",age)
+    # st.write("Age is :: ",age)
 
 
     if((firstChar == 'S' or firstChar == 'T') and (18 <age <40)):
@@ -122,7 +122,7 @@ def new_customer_workflow(nric):
     else:
              st.image('no_cover.png', width=200)
              st.write(getMessageC())
-             export_as_pdf = st.button("Export as pdf")
+             export_as_pdf = st.button("Share")
              if export_as_pdf:
                 pdf = FPDF()
                 pdf.add_page()
