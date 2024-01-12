@@ -33,10 +33,12 @@ def generate_response(prompt):
                  }
     ],
     "model": "GPT-4",
+     "temperature": 0.1,
     "messages": [
        {
            "role":"system",
-           "content":"""you are a financial advisor. use the below data to answer questions.
+           "content":"""you are a financial advisor. Answer in plain text , dotn use bullet points.if you dont know any answer you can say you dont know.
+           Sample squestion answers . 
              Question: What is the Group Term Life Coverage Amount?
                Answer: 100,000 $
                Question: What is the Monthly premium rate for Group Term Life for ages below 65 years old?
