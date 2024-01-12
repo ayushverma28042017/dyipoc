@@ -113,6 +113,7 @@ def generate_response(prompt):
             response=response.replace('[doc2]','')
             response=response.replace('[doc3]','')
             response= str(response)
+            response=f""" {response}"""
 
             st.session_state['messages'].append({"role": "assistant", "content": response})
             total_tokens = str(completion.json()["usage"]["total_tokens"])
