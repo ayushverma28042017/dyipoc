@@ -7,13 +7,11 @@ import streamlit as st
 from streamlit_chat import message
 
 load_dotenv(".streamlit/secrets.toml")
-st.image("Geine.jpg", width=100)
+# st.image("Geine.jpg", width=100)
 url=os.environ["api_base_url"]
 api_key=os.environ["AZURE_OPENAI_API_KEY"]
 azureSearchKey=os.environ["azureSearchKey"]
-# Setting page title and header
-# st.set_page_config(page_title="AVA", page_icon=":robot_face:")
-st.markdown("<h1 style='text-align: center;'>Let's discover how you can achieve an affordable protection portfolio with Singlfe .... </h1>", unsafe_allow_html=True)
+st.header("Let's discover how you can achieve an affordable protection portfolio with Singlfe .... ")
 headers = {
 
     "api-key": api_key,
@@ -52,6 +50,9 @@ def generate_response(prompt):
     # response = requests.post(url, headers=headers, data=json.dumps(data))   
     if completion.status_code == 200: 
             response = str(completion.json()["choices"][0]["message"]["content"])
+            response=response.replace('[doc1]','')
+            response=response.replace('[doc2]','')
+            response=response.replace('[doc3]','')
             st.session_state['messages'].append({"role": "assistant", "content": response})
             total_tokens = str(completion.json()["usage"]["total_tokens"])
             prompt_tokens = str(completion.json()["usage"]["prompt_tokens"])
@@ -83,7 +84,7 @@ if 'total_cost' not in st.session_state:
     st.session_state['total_cost'] = 0.0
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
-st.sidebar.title("Sidebar")
+# st.sidebar.title("Sidebar")
 model_name = st.sidebar.radio("Choose a model:", ("Azure-Gen-AI(GPT3.5)", "Oracle-Gen-AI(Cohere)"))
 counter_placeholder = st.sidebar.empty()
 counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
@@ -100,7 +101,7 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", "content": "You are a helpful assistant."}
+        {"role": "system", "content": "You are a Singlife Advisor assistant."}
     ]
     st.session_state['number_tokens'] = []
     st.session_state['model_name'] = []
