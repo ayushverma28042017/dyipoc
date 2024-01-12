@@ -134,7 +134,7 @@ def calculate_age(born):
     today = date.today()
     return today.year - born
 
-def v_customer_workflow(nric):
+def v_customer_workflow(nric,name):
      con = sqlite3.connect("customer.db")
      cur = con.cursor()
      cur.execute("SELECT PRODUCT_CODE, ANNUAL_PREMIUM, ACCEPTED_SA_AMT, DOB FROM customer where NRIC='"+nric+"';")
@@ -195,15 +195,25 @@ def v_customer_workflow(nric):
      median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
-        st.image('full_cover.png', width=400)
-        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
-        export_as_pdf = st.button("Share")
-        st.write(clickmindefbot())
+      #   st.image('full_cover.png', width=400)
+      #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+      #   export_as_pdf = st.button("Share")
+      #   st.write(clickmindefbot())
+         col1, col2 = st.columns(2)
+         # col1.image('full_cover.png', use_column_width=True)
+         col1.image('armor_full.jpg', use_column_width=True)
+         col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+         export_as_pdf = st.button("Share")
+         st.write(clickmindefbot())
      else:
-        st.image('half_cover.png', width=400)
-        st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
-        export_as_pdf = st.button("Share")
-        st.write(clickmindefbot())
+      #   st.image('half_cover.png', width=400)
+      #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+         col1, col2 = st.columns(2)
+         # col1.image('half_cover.png', use_column_width=True)
+         col1.image('armor-half.jpg', use_column_width=True)
+         col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+         export_as_pdf = st.button("Share")
+         st.write(clickmindefbot())
  
 
 def is_v_scheme_customer(nric):
@@ -281,42 +291,42 @@ def find_value(age):
 
      
 
-def msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
+def msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3):
    if(G1 <CE1 and G2 < CE2):
       #B1
-      return getCommonMSg_1(median_sal)+B1()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()
+      return getCommonMSg_1(median_sal,name)+B1()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()
    elif(G1 <CE1 and G2 ==CE2):
       #B3
-      return getCommonMSg_1(median_sal)+B3()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B3()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
    elif(G1 <CE1 and G2 > CE2):
       #B7
-      return getCommonMSg_1(median_sal)+B7()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B7()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 ==CE1 and G2 <CE2):
       #B2
-      return getCommonMSg_1(median_sal)+B2()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B2()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
    elif(G1 ==CE1 and G2 ==CE2):
       #B4
-      return getCommonMSg_1(median_sal)+B4()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B4()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB1_B4()+getCommonMSG_last()
    elif(G1 ==CE1 and G2 >CE2):
       #B8
-      return getCommonMSg_1(median_sal)+B8()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+ getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B8()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+ getB7_B8(CE1,PE1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 >CE1 and G2 <CE2):
       #B5
-      return getCommonMSg_1(median_sal)+B5()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B5()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 >CE1 and G2 ==CE2):
       #B6
-      return getCommonMSg_1(median_sal)+B6()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B6()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB5_B6(G1,P1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    elif(G1 <CE1 and G2 >CE2):
       #B9
-      return getCommonMSg_1(median_sal)+B9()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB9(G1,P1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
+      return getCommonMSg_1(median_sal,name)+B9()+getCommonMSg_2(CE1,PE1,CE2,PE2,(P1+P2),((P1+P2)/median_sal))+getB9(G1,P1,G2,P2,(P1+P2),((P1+P2)/median_sal))+getCommonMSG_last()
    
 
 def clickmindefbot():
    link = '[Mindef-Bot](https://insurancediscovery.streamlit.app/MINDEF_MHA_BOT)'
    st.markdown(link, unsafe_allow_html=True)
      
-def getCommonMSg_1(median_sal):
-    return f"""\n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
+def getCommonMSg_1(median_sal,name):
+    return f""" Hello {name} \n\nThank you for being a member of the MINDEF-MHA voluntary group insurance scheme.
     \n​The median annual income of people in your age group is """+ "${:,.2f}".format(median_sal)+""".
     At Singlife, we protect those who have served to protect Singapore."""
  

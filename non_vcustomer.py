@@ -85,7 +85,7 @@ def validation(name):
 def create_download_link(val, filename):
                  b64 = base64.b64encode(val)  # val looks like b'...'
                  return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
-def new_customer_workflow(nric):
+def new_customer_workflow(nric,name):
      
     birthyr  = nric[1:3]
     current_year = 2024
@@ -114,49 +114,52 @@ def new_customer_workflow(nric):
       P3=(median_sal *15)/100
       median_sal = 12 * median_sal
 
-      if(P1+P2 <=P3):
-        st.write(getA1Message(median_sal,G1,G2,P1,P2))
-  
+      if(P1+P2<=P3):
+        # st.write(getA1Message(median_sal,G1,G2,P1,P2))
+        col1, col2 = st.columns(2)
+        col1.image('no_cover_1.png', use_column_width=True)
+        col2.write(getMessageC(median_sal,G1,G2,P1,P2))
+        export_as_pdf = st.button("Share")
       else:
-             st.write(getA1Message(median_sal,G1,G2,P1,P2))
+        #  st.write(getA1Message(median_sal,G1,G2,P1,P2))
+         col1, col2 = st.columns(2)
+         col1.image('no_cover_1.png', use_column_width=True)
+         col2.write(getMessageC(median_sal,G1,G2,P1,P2))
+         export_as_pdf = st.button("Share")
     else:
-             st.image('no_cover.png', width=400)
-             st.write(getMessageC())
+            #  st.image('no_cover.png', width=400)
+            #  st.write(getMessageC())
+             
+            #  st.subheader(f"""Hello {name}""")
+             col1, col2 = st.columns(2)
+             col1.image('no_cover_1.png', use_column_width=True)
+             col2.write(getMessageC(name))
              export_as_pdf = st.button("Share")
-             if export_as_pdf:
-                pdf = FPDF()
-                pdf.add_page()
-                pdf.set_font('Arial', 'B', 16)
-                pdf.cell(40, 10, getMessageC())
-    
-                html = create_download_link(pdf.output(dest="S").encode("latin-1"), nric)
+            
+# def getA1Message(median_sal,G1,G2,P1,P2):
+#      return f"""The median annual income of people in your age group is \${median_sal}
+#                 \nAt Singlife, we protect those who have served to protect Singapore.​
+#                 \nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide:​
+#                    a)Death cover of \${G1:,} with annual premium of \${P1:.}​
+#                    b)Critical illness cover of \${G2:,} with annual premium of \${P2:.}
+#                    c)This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.%}  of the median annual income of people in your age group.​
 
-                st.markdown(html, unsafe_allow_html=True)
-    
+#                Click on the following links to be protected today​
+#                 MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
+#                 MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
 
-def getA1Message(median_sal,G1,G2,P1,P2):
-     return f"""The median annual income of people in your age group is \${median_sal}
-                \nAt Singlife, we protect those who have served to protect Singapore.​
-                \nYou could consider the following covers as your foundation protection as recommended by the LIA financial planning guide:​
-                   a)Death cover of \${G1:,} with annual premium of \${P1:.}​
-                   b)Critical illness cover of \${G2:,} with annual premium of \${P2:.}
-                   c)This annual premium of \${(P1+P2):,} is only {((P1+P2)/median_sal):.%}  of the median annual income of people in your age group.​
+#             Our Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom.​
+#             Share your discovery and commitment to start your financial freedom by clicking here :
+#               \n https://facebook.com/ 
+#              \n https://instagram.com/
 
-               Click on the following links to be protected today​
-                MINDEF : https://ebh.singlife.com/eb/mindef-mha/?MINDEF​
-                MHA : https://ebh.singlife.com/eb/mindef-mha/?groupName=MHA​
+#             LIA financial planning guide recommends to have​
+#               \n1.Death cover of at least 9x annual income.​
+#               \n2.Critical illness of at least 4x annual income.​
+#               \n3.To spend no more than 15% of annual income on premium for insurance protection.​
+#             https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide ​"""
 
-            Our Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom.​
-            Share your discovery and commitment to start your financial freedom by clicking here :
-              \n https://facebook.com/ 
-             \n https://instagram.com/
 
-            LIA financial planning guide recommends to have​
-              \n1.Death cover of at least 9x annual income.​
-              \n2.Critical illness of at least 4x annual income.​
-              \n3.To spend no more than 15% of annual income on premium for insurance protection.​
-            https://www.mas.gov.sg/news/media-releases/2023/mas-and-financial-industry-launch-basic-financial-planning-guide ​"""
-
-def getMessageC():
-   return """ Our SRC can help you with a comprehensive financial review.​
+def getMessageC(name):
+   return f""" Hello {name} \n\n Our SRC can help you with a comprehensive financial review.​
     \nOur Singlife Relationship Consultants will be contacting you to help you chart you path towards financial freedom."""

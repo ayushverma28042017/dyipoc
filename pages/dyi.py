@@ -10,7 +10,7 @@ def main():
     # init()
     load_dotenv(".streamlit/secrets.toml")
     st.image("logo.JPG", width=100)
-    st.title("Let's discover how you can achieve an affordable protection portfolio with Singlfe")
+    st.title("Let's discover how you can achieve an affordable protection portfolio with Singlife...")
 #     st.set_page_config(
 #      page_title="Discover Your Insurance",
 #      page_icon="🧊",
@@ -44,9 +44,9 @@ def main():
         # elif a:
         #  validation()
         elif is_v_scheme_customer(nric)==True:
-           v_customer_workflow(nric)
+           v_customer_workflow(nric,name)
         else :
-          new_customer_workflow(nric)
+          new_customer_workflow(nric,name)
           # non_v_customer_workflow(nric)
          
          

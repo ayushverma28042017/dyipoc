@@ -112,6 +112,7 @@ def generate_response(prompt):
             response=response.replace('[doc1]','')
             response=response.replace('[doc2]','')
             response=response.replace('[doc3]','')
+            response=response.replace('[doc4]','')
             response= str(response)
             response=f""" {response}"""
 
@@ -193,12 +194,12 @@ with container:
         # st.write("total_tokens....",total_tokens)
         if model_name == "GPT-3.5":
             total_tokens=float(total_tokens)
-            cost = (total_tokens * 0.002)/ 1000
+            cost = ((total_tokens/1000) * 0.002)
         
         else:
             prompt_tokens=float(prompt_tokens)
             completion_tokens= float(completion_tokens)
-            cost = (prompt_tokens * 0.03) + (completion_tokens * 0.06) / 1000
+            cost = (((prompt_tokens/1000) * 0.03) + ((completion_tokens/1000 * 0.01))) 
 
         st.session_state['cost'].append(cost)
         st.session_state['total_cost'] += cost
