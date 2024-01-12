@@ -50,10 +50,12 @@ def generate_response(prompt):
     completion = requests.post(url, headers=headers, data=json.dumps(data))   
     # response = requests.post(url, headers=headers, data=json.dumps(data))   
     if completion.status_code == 200: 
-            response = str(completion.json()["choices"][0]["message"]["content"])
+            response = completion.json()["choices"][0]["message"]["content"]
             response=response.replace('[doc1]','')
             response=response.replace('[doc2]','')
             response=response.replace('[doc3]','')
+            response= str(response)
+
             st.session_state['messages'].append({"role": "assistant", "content": response})
             total_tokens = str(completion.json()["usage"]["total_tokens"])
             prompt_tokens = str(completion.json()["usage"]["prompt_tokens"])
@@ -121,7 +123,7 @@ with container:
      submit_button = st.form_submit_button(label='Send')
     # input_data = "Create summary in 300 words in very simple english language without any grammar mistake ,simple sentence ,active voice and use more we and you and keep usage of promoun for below conversation between Financial Advisor and Customer :\n\nConversation:"+prompt
     # submit_form = st.form_submit_button(label="submit", help="Click to submit")
-     if user_input and user_input:
+     if user_input and submit_button:
         output, total_tokens, prompt_tokens, completion_tokens = generate_response(user_input)
         st.session_state['past'].append(user_input)
         st.session_state['generated'].append(output)
