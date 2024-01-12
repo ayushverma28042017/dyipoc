@@ -1,6 +1,6 @@
 from utility import *   
-# from genai import *
-# from app import *
+from fpdf import FPDF
+
 
 def check(email):
  regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
@@ -82,20 +82,21 @@ def validation(name):
             return False
     return True
 
-
-def new_customer_workflow(nric,genaimsg):
+def create_download_link(val, filename):
+                 b64 = base64.b64encode(val)  # val looks like b'...'
+                 return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+def new_customer_workflow(nric):
      
     birthyr  = nric[1:3]
-#  st.write("birthyr is :: ",birthyr)
     current_year = 2024
-#  st.write("current_year is :: ",current_year)
+
     age = current_year-(int(birthyr)+1900) 
     firstChar = nric[0:1]
     st.write("Age is :: ",age)
-    # st.write("firstChar is :: ",firstChar)
+
 
     if((firstChar == 'S' or firstChar == 'T') and (18 <age <40)):
-    #   st.write(" is PR  :: ")
+   
 
       median_sal=median_sal= getMdianSalary_by_AgeRange(int(age))
 
@@ -115,27 +116,22 @@ def new_customer_workflow(nric,genaimsg):
 
       if(P1+P2 <=P3):
         st.write(getA1Message(median_sal,G1,G2,P1,P2))
-        # st.write("B1...B9.. write")
+  
       else:
-         if genaimsg:
-        #   st.write(rewerite(getA1Message(median_sal,G1,G2,P1,P2)))
-             st.write(format_currency_in_string(getA1Message(median_sal,G1,G2,P1,P2)))
-         else:
-            st.write(format_currency_in_string(getA1Message(median_sal,G1,G2,P1,P2)))
-    
+             st.write(getA1Message(median_sal,G1,G2,P1,P2))
     else:
-      if genaimsg:
-        # st.write(rewerite(getMessageC()))
-        #    st.image("no_cover.png", width=100)
-        #    st.write(getMessageC())
-        #    st.write("a logo and text next to eachother")
-           col1, mid, col2 = st.beta_columns([1,1,20])
-           with col1:
-            st.image('no_cover.jpg', width=60)
-            with col2:
-                st.write(getMessageC())
-      else:
-        st.write(getMessageC())
+             st.image('no_cover.png', width=200)
+             st.write(getMessageC())
+             export_as_pdf = st.button("Export as pdf")
+             if export_as_pdf:
+                pdf = FPDF()
+                pdf.add_page()
+                pdf.set_font('Arial', 'B', 16)
+                pdf.cell(40, 10, getMessageC())
+    
+                html = create_download_link(pdf.output(dest="S").encode("latin-1"), nric)
+
+                st.markdown(html, unsafe_allow_html=True)
     
 
 def getA1Message(median_sal,G1,G2,P1,P2):

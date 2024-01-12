@@ -4,6 +4,7 @@ import pandas as pd
 import openpyxl as openpyxl
 from datetime import date
 import re
+from fpdf import FPDF
 
 # def find_data(df,var):
 #    for col in list(df):
@@ -16,13 +17,6 @@ import re
 def readIncome():
      income = pd.read_excel("resources\\Median_ Income_ from_ Ministry_of_ Manpower.xlsx", sheet_name='For Model')
      upload_xls_to_Db(income,"income")
-    #  data = income.columns.values[0]
-    #  st.write(income)
-    #  st.write(find_data(income,10))
-    #  income[income.eq("3,850").any(1)]
-    #  st.write(income.columns.values[4])
-    #  st.write(income.columns.values[5])
-    #  return income
 
 def premium_lcsaf(age):
      if 1 <=age <=20 :  
@@ -175,28 +169,24 @@ def v_customer_workflow(nric):
     # Constraint 1 
      c1= 9 * median_sal 
      c2= 4 * median_sal 
-   #   st.write("cover_c1 :",c1)
-   #   st.write("cover_c2 :",c2)
+ 
 
      # Constraint 2
      G1 =  min(c1,1000000)
      G2=  min(c2,500000)
-   #   st.write("recommend_value_g1 :",G1)
-   #   st.write("recommend_value_g2 :",G2)
+
 
 
     #Deltas 
      d1 = max(0,(G1-CE1))
      d2 = max(0,(G2-CE2))
-   #   st.write("delta_1 :",d1)
-   #   st.write("delta_2 :",d2)
+
 
      
      #New SA to clsoe GAP
      G1A = CE1+d1
      G2A = CE2 +d2
-   #   st.write("G1_A :",G1A)
-   #   st.write("G2_A :",G2A)
+
 
      #calculate permium pay base on above
      P1= premium_tlsaf(age) *12
@@ -205,33 +195,14 @@ def v_customer_workflow(nric):
      median_sal = median_sal* 12
 
      if(P1+P2 <=P3):
+        st.image('full_cover.png', width=200)
         st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         st.write(clickmindefbot())
      else:
+        st.image('half_cover.png', width=200)
         st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
         st.write(clickmindefbot())
  
-# def read_sample_customer():
-#      #local
-#    # customer = pd.read_excel(".\\resources\\Sample_Customer_Data.xlsx", sheet_name='TestSet')
-#      customer = pd.read_excel("Sample_Customer_Data.xlsx", sheet_name='TestSet')
-#      upload_xls_to_Db(customer,"customer")
-    #  return customer
-
-# def read_voluntry_scheme():
-#      v_scheme = pd.read_excel("resources\\Voluntary_Scheme_Premiu_Table.xlsx", sheet_name='premiums')
-#      upload_xls_to_Db(v_scheme,"v_scheme")
-#     #  return v_scheme
-
-
-# def upload_xls_to_Db(wb,dbname):
-#            cxn = sqlite3.connect(dbname+'.db')
-#         #    wb = pd.read_excel("C:\\Users\\ayush\\OneDrive - Singapore Life\\Documents\\projects\\dyipoc\\dyi_test.xlsx", sheet_name='TestSet')
-#            #append
-           
-#            wb.to_sql(name=dbname,con=cxn,if_exists='replace',index=True)
-#            cxn.commit()
-#            cxn.close()   
 
 def is_v_scheme_customer(nric):
           con = sqlite3.connect("customer.db")
@@ -460,7 +431,3 @@ def format_currency_in_string(s):
  
     return s
  
-# Example usage
-input_string = "lorem ipsum $1200000"
-formatted_string = format_currency_in_string(input_string)
-# print(formatted_string)

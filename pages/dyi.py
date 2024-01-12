@@ -46,7 +46,7 @@ def main():
         elif is_v_scheme_customer(nric)==True:
            v_customer_workflow(nric)
         else :
-          new_customer_workflow(nric,genaimsg)
+          new_customer_workflow(nric)
           # non_v_customer_workflow(nric)
          
          
