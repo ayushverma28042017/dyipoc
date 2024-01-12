@@ -131,12 +131,11 @@ with container:
         if model_name == "GPT-3.5":
             total_tokens=float(total_tokens)
             cost = (total_tokens * 0.002)/ 1000
-            # st.write("cost....",cost)
-            # st.write("model_name....",cost)
-            # st.write("total_tokens....",cost)
+        
         else:
             prompt_tokens=float(prompt_tokens)
-            cost = (prompt_tokens * 0.03 + completion_tokens * 0.06) / 1000
+            completion_tokens= float(completion_tokens)
+            cost = (prompt_tokens * 0.03) + (completion_tokens * 0.06) / 1000
 
         st.session_state['cost'].append(cost)
         st.session_state['total_cost'] += cost
