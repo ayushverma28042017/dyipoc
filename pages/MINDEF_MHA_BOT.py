@@ -13,6 +13,7 @@ api_key=os.environ["AZURE_OPENAI_API_KEY"]
 azureSearchKey=os.environ["azureSearchKey"]
 st.image("Geine.jpg", width=100)
 st.header("Let's discover how you can achieve an affordable protection portfolio with Singlfe .... ")
+
 headers = {
 
     "api-key": api_key,
@@ -28,74 +29,20 @@ def generate_response(prompt):
             "parameters": {
                 "endpoint": "https://cognitive-search-dyi.search.windows.net",
                 "key": azureSearchKey,
-                "indexName": "mendefindex"
+                "indexName": "mendefindex-new"
             }
                  }
     ],
     "model": "GPT-4",
-     "temperature": 0.1,
+     "temperature": 0.2,
+     "max_tokens" :800,
+     "frequency_penalty":0,
+     "presence_penalty":0,
+     "top_p":0.95,
+
+
     "messages": [
-       {
-           "role":"system",
-           "content":"""you are a financial advisor. Answer in plain text , dotn use bullet points.if you dont know any answer you can say you dont know.
-           Sample squestion answers . 
-             Question: What is the Group Term Life Coverage Amount?
-               Answer: 100,000 $
-               Question: What is the Monthly premium rate for Group Term Life for ages below 65 years old?
-               Answer 2.50
-               Question: What is the Monthly premium rate for Group Term Life for age 66 years old?
-               Answer 35.30
-               Question: What is the Monthly premium rate for Group Term Life for age 67 years old?
-               Answer 40.10
-               Question: What is the Monthly premium rate for Group Term Life for age 68 years old?
-               Answer 48.30
-               Question: What is the Monthly premium rate for Group Term Life for age 69 years old?
-               Answer 57.40
-               Question: What is the Monthly premium rate for Group Term Life for age 70 years old?
-               Answer 63.60
-               Question: What is the Group Term Life Coverage Amount?
-                 Answer: 100,000 $
-                 Question: What is the Monthly premium rate for Living Care for ages between 1 to 20 years old?
-                 Answer 2.20
-                 Question: What is the Monthly premium rate for Living Care for ages between 21 to 25 years old?
-                 Answer 2.60
-                 Question: What is the Monthly premium rate for Living Care Life for ages between 26 to 30 years old?
-                 Answer 3.70
-                 Question: What is the Monthly premium rate for Living Care for ages between 31 to 35 years old?
-                 Answer 5.40
-                 Question: What is the Monthly premium rate for Living Care for ages between 36 to 40 years old?
-                 Answer 9.00
-                 Question: What is the Monthly premium rate for Living Care Life for ages between 41 to 45 years old?
-                 Answer 9.00
-                 Question: What is the Monthly premium rate for Living Care for ages between 46 to 50 years old?
-                 Answer 24.80
-                 Question: What is the Monthly premium rate for Living Care for age between 51 to 55 years old?
-                 Answer 37.80
-                 Question: What is the Monthly premium rate for Living Care for age between 56 to 60 years old?
-                 Answer 52.20
-                 Question: What is the Monthly premium rate for Living Care for age between 61 to 65 years old?
-                 Answer 72.70
-                 Question: What is the Monthly premium rate for Living Care for age 66 years?
-                 Answer 94.50
-                 Question: What is the Monthly premium rate for Living Care for age 67 years old?
-                 Answer 105.80
-                 Question: What is the Monthly premium rate for Living Carefor age 68 years old?
-                 Answer 118.40
-                 Question: What is the Monthly premium rate for Living Care for age 69 years old?
-                 Answer 132.50
-                 Question: What is the Monthly premium rate for Living Care for age 70 years old?
-                 Answer 148.50
-                 MEDIAN GROSS MONTHLY INCOME for ages between 16 to 19 years is 1,198
-                 MEDIAN GROSS MONTHLY INCOME for ages between 20 to 24 years is 2,500
-                 MEDIAN GROSS MONTHLY INCOME for ages between 25 to 29 years is 3,850
-                 MEDIAN GROSS MONTHLY INCOME for ages between 30 to 34 years is 5,000
-                 MEDIAN GROSS MONTHLY INCOME for ages between 35 to 39 years is 5,850
-                 MEDIAN GROSS MONTHLY INCOME for ages between 40 to 44 years is 5,958
-                 MEDIAN GROSS MONTHLY INCOME for ages between 45 to 49 years is 5,833
-                 MEDIAN GROSS MONTHLY INCOME for ages between 50 to 54 years is 5,000
-                 MEDIAN GROSS MONTHLY INCOME for ages between 55 to 59 years is 3,792
-                 MEDIAN GROSS MONTHLY INCOME for ages between 60 to 100 years is 2,475""",
-},
+       {"role":"system","content":"""you are a financial advisor. use the below data to answer questions. ### Question: What is the Group Term Life Coverage Amount?\n Answer: 100,000 $\nQuestion: What is the Monthly premium rate for Group Term Life for ages below 65 years old?\nAnswer 2.50\nQuestion: What is the Monthly premium rate for Group Term Life for age 66 years old?\nAnswer 35.30\nQuestion: What is the Monthly premium rate for Group Term Life for age 67 years old?\nAnswer 40.10\nQuestion: What is the Monthly premium rate for Group Term Life for age 68 years old?\nAnswer 48.30\nQuestion: What is the Monthly premium rate for Group Term Life for age 69 years old?\nAnswer 57.40\nQuestion: What is the Monthly premium rate for Group Term Life for age 70 years old?\nAnswer 63.60\n\nQuestion: What is the Group Term Life Coverage Amount?\n Answer: 100,000 $\nQuestion: What is the Monthly premium rate for Living Care for ages between 1 to 20 years old?\nAnswer 2.20\nQuestion: What is the Monthly premium rate for Living Care for ages between 21 to 25 years old?\nAnswer 2.60\nQuestion: What is the Monthly premium rate for Living Care Life for ages between 26 to 30 years old?\nAnswer 3.70\nQuestion: What is the Monthly premium rate for Living Care for ages between 31 to 35 years old?\nAnswer 5.40\nQuestion: What is the Monthly premium rate for Living Care for ages between 36 to 40 years old?\nAnswer 9.00\nQuestion: What is the Monthly premium rate for Living Care Life for ages between 41 to 45 years old?\nAnswer 9.00\nQuestion: What is the Monthly premium rate for Living Care for ages between 46 to 50 years old?\nAnswer 24.80\nQuestion: What is the Monthly premium rate for Living Care for age between 51 to 55 years old?\nAnswer 37.80\n\nQuestion: What is the Monthly premium rate for Living Care for age between 56 to 60 years old?\nAnswer 52.20\nQuestion: What is the Monthly premium rate for Living Care for age between 61 to 65 years old?\nAnswer 72.70\nQuestion: What is the Monthly premium rate for Living Care for age 66 years?\nAnswer 94.50\nQuestion: What is the Monthly premium rate for Living Care for age 67 years old?\nAnswer 105.80\nQuestion: What is the Monthly premium rate for Living Carefor age 68 years old?\nAnswer 118.40\nQuestion: What is the Monthly premium rate for Living Care for age 69 years old?\nAnswer 132.50\n\nQuestion: What is the Monthly premium rate for Living Care for age 70 years old?\nAnswer 148.50\n\nMEDIAN GROSS MONTHLY INCOME for ages between 16 to 19 years is 1,198\nMEDIAN GROSS MONTHLY INCOME for ages between 20 to 24 years is 2,500\nMEDIAN GROSS MONTHLY INCOME for ages between 25 to 29 years is 3,850\nMEDIAN GROSS MONTHLY INCOME for ages between 30 to 34 years is 5,000\nMEDIAN GROSS MONTHLY INCOME for ages between 35 to 39 years is 5,850\nMEDIAN GROSS MONTHLY INCOME for ages between 40 to 44 years is 5,958\nMEDIAN GROSS MONTHLY INCOME for ages between 45 to 49 years is 5,833\nMEDIAN GROSS MONTHLY INCOME for ages between 50 to 54 years is 5,000\nMEDIAN GROSS MONTHLY INCOME for ages between 55 to 59 years is 3,792\nMEDIAN GROSS MONTHLY INCOME for ages between 60 to 100 years is 2,475 ###\n"""},
     {
             "role": "user",
             "content": prompt
