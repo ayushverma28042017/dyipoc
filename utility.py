@@ -193,24 +193,31 @@ def v_customer_workflow(nric,name):
      P2= premium_lcsaf(age) *12
      P3=(median_sal *15)/100
      median_sal = median_sal* 12
-
-     if(P1+P2 <=P3):
+   #   st.write("P1 >",P1)
+   #   st.write("P2 >",P2)
+   #   st.write("P3 >",P3)
+     if((P1+P2 <=P3)):
+         # st.write("IFFFFFFFFFF >",P3)
       #   st.image('full_cover.png', width=400)
       #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
       #   export_as_pdf = st.button("Share")
       #   st.write(clickmindefbot())
          col1, col2 = st.columns(2)
          # col1.image('full_cover.png', use_column_width=True)
-         col1.image('armor_full.jpg', use_column_width=True)
+         if(P3 > 800):
+          col1.image('half.jpg', use_column_width=True)
+         else:
+          col1.image('full.jpg', use_column_width=True)
          col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          export_as_pdf = st.button("Share")
          st.write(clickmindefbot())
      else:
+         # st.write("elseeeeee >",P3)
       #   st.image('half_cover.png', width=400)
       #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          col1, col2 = st.columns(2)
          # col1.image('half_cover.png', use_column_width=True)
-         col1.image('armor-half.jpg', use_column_width=True)
+         col1.image('half.jpg', use_column_width=True)
          col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          export_as_pdf = st.button("Share")
          st.write(clickmindefbot())

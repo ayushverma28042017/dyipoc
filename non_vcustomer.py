@@ -117,13 +117,13 @@ def new_customer_workflow(nric,name):
       if(P1+P2<=P3):
         # st.write(getA1Message(median_sal,G1,G2,P1,P2))
         col1, col2 = st.columns(2)
-        col1.image('no_cover_1.png', use_column_width=True)
+        col1.image('no.jpg', use_column_width=True)
         col2.write(getMessageC(median_sal,G1,G2,P1,P2))
         export_as_pdf = st.button("Share")
       else:
         #  st.write(getA1Message(median_sal,G1,G2,P1,P2))
          col1, col2 = st.columns(2)
-         col1.image('no_cover_1.png', use_column_width=True)
+         col1.image('no.jpg', use_column_width=True)
          col2.write(getMessageC(median_sal,G1,G2,P1,P2))
          export_as_pdf = st.button("Share")
     else:
@@ -132,7 +132,7 @@ def new_customer_workflow(nric,name):
              
             #  st.subheader(f"""Hello {name}""")
              col1, col2 = st.columns(2)
-             col1.image('no_cover_1.png', use_column_width=True)
+             col1.image('no.jpg', use_column_width=True)
              col2.write(getMessageC(name))
              export_as_pdf = st.button("Share")
             
