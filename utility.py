@@ -205,10 +205,11 @@ def v_customer_workflow(nric,name):
          col1, col2 = st.columns(2)
          # col1.image('full_cover.png', use_column_width=True)
          if(P3 > 800):
-          col1.image('half.jpg', use_column_width=True)
+               col1.image('half.JPG', use_column_width=True)
+               col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          else:
-          col1.image('full.jpg', use_column_width=True)
-         col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
+               col1.image('full.JPG', use_column_width=True)
+               col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          export_as_pdf = st.button("Share")
          st.write(clickmindefbot())
      else:
@@ -217,7 +218,7 @@ def v_customer_workflow(nric,name):
       #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          col1, col2 = st.columns(2)
          # col1.image('half_cover.png', use_column_width=True)
-         col1.image('half.jpg', use_column_width=True)
+         col1.image('half.JPG', use_column_width=True)
          col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
          export_as_pdf = st.button("Share")
          st.write(clickmindefbot())
