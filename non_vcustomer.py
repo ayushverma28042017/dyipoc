@@ -120,12 +120,14 @@ def new_customer_workflow(nric,name):
         col1.image('no.JPG', use_column_width=True)
         col2.write(getMessageC(median_sal,G1,G2,P1,P2))
         export_as_pdf = st.button("Share")
+        st.write(clickmindefbot())
       else:
         #  st.write(getA1Message(median_sal,G1,G2,P1,P2))
          col1, col2 = st.columns(2)
          col1.image('no.JPG', use_column_width=True)
          col2.write(getMessageC(median_sal,G1,G2,P1,P2))
          export_as_pdf = st.button("Share")
+         st.write(clickmindefbot())
     else:
             #  st.image('no_cover.png', width=400)
             #  st.write(getMessageC())
@@ -135,6 +137,7 @@ def new_customer_workflow(nric,name):
              col1.image('no.JPG', use_column_width=True)
              col2.write(getMessageC(name))
              export_as_pdf = st.button("Share")
+             st.write(clickmindefbot())
             
 # def getA1Message(median_sal,G1,G2,P1,P2):
 #      return f"""The median annual income of people in your age group is \${median_sal}
