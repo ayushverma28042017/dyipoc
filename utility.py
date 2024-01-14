@@ -196,7 +196,7 @@ def v_customer_workflow(nric,name):
    #   st.write("P1 >",P1)
    #   st.write("P2 >",P2)
    #   st.write("P3 >",P3)
-     if((P1+P2 <=P3)):
+     if(P1+P2 <=P3):
          # st.write("IFFFFFFFFFF >",P3)
       #   st.image('full_cover.png', width=400)
       #   st.write(msg_to_user(PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
