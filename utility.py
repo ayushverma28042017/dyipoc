@@ -212,7 +212,7 @@ def v_customer_workflow(nric,name):
                col1.image('full.JPG', use_column_width=True)
                col2.write(msg_to_user(name,PE1,PE2,CE1,CE2,median_sal,c1,c2,G1,G2,P1,P2,P3))
                export_as_pdf = st.button("Share")
-         export_as_pdf = st.button("Share")
+             
          st.write(clickmindefbot())
      else:
          # st.write("elseeeeee >",P3)
