@@ -14,6 +14,7 @@ azureSearchKey=os.environ["azureSearchKey"]
 st.image("Geine.jpg", width=100)
 st.header("Let's discover how you can achieve an affordable protection portfolio with Singlfe .... ")
 
+
 headers = {
 
     "api-key": api_key,
@@ -68,7 +69,7 @@ def generate_response(prompt):
             prompt_tokens = str(completion.json()["usage"]["prompt_tokens"])
             completion_tokens = str(completion.json()["usage"]["completion_tokens"])
        
-            return response, total_tokens, prompt_tokens, completion_tokens
+            return str(response), total_tokens, prompt_tokens, completion_tokens
     else:
             st.write("Failed to fetch data") 
             st.write("Status code:", response.status_code)
